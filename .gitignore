@@ -1,0 +1,22 @@
+# System
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+venv/
+__pycache__/
+*.py[cod]
+
+# Node
+node_modules/
+dist/
+.npm/
+
+# Data (Sensitive user data)
+data/*.csv
+!data/.gitkeep
+
+# IDE
+.vscode/
+.idea/

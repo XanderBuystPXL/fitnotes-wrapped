@@ -1,0 +1,364 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+:root {
+    /* Winter Theme Palette */
+    --color-bg-dark: #020b1c; /* Deep Midnight Blue */
+    --color-bg-mid: #0a1930;  /* Navy */
+    --color-ice-1: #e0f7fa;   /* Pale Ice */
+    --color-ice-2: #81d4fa;   /* Sky Blue */
+    --color-ice-3: #29b6f6;   /* Bright Blue */
+    --color-silver: #cfd8dc;  /* Metallic Silver */
+    
+    --font-heading: 'Space Grotesk', sans-serif;
+    
+    /* Frosted Card */
+    --glass-bg: rgba(10, 25, 48, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg-dark);
+    color: var(--color-ice-1);
+    font-family: var(--font-heading);
+    overflow-x: hidden;
+    color-scheme: dark;
+}
+
+#root {
+    width: 100%;
+}
+
+.snap-container {
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    position: relative;
+    z-index: 10;
+}
+
+.section {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* --- Winter Background --- */
+.fixed-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background: radial-gradient(circle at 50% 120%, #1a237e 0%, #000000 70%); /* Deep cold gradient */
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Northern Lights (Aurora) Effect - replacing Orbs */
+.aurora {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.1) 0%, transparent 60%);
+    filter: blur(80px);
+    animation: aurora-flow 30s infinite linear;
+    transform-origin: center;
+}
+
+@keyframes aurora-flow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+/* --- Frosted Glass Card --- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 5, 20, 0.5); /* Deep shadow */
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow-y: auto;
+}
+
+.full-width {
+    max-width: 1000px;
+}
+
+/* --- Typography --- */
+.super-title {
+    font-weight: 300; /* Lighter weight for modern look */
+    font-size: clamp(4rem, 15vw, 9rem);
+    margin: 0;
+    background: linear-gradient(180deg, #fff 0%, #aab6ce 100%); /* Silver gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 0.9;
+    letter-spacing: -5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    letter-spacing: 0.8rem;
+    margin-top: 10px;
+    color: var(--color-ice-2);
+    text-shadow: 0 0 10px rgba(129, 212, 250, 0.3);
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #fff;
+    letter-spacing: -1px;
+}
+
+.label-sm {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-silver);
+    margin-bottom: 5px;
+    opacity: 0.7;
+}
+
+.stat-value {
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin: 0;
+    letter-spacing: -2px;
+}
+
+.stat-value-lg {
+    font-size: 4.5rem;
+    font-weight: 300;
+    margin: 10px 0;
+    letter-spacing: -2px;
+}
+
+.stat-value-xl {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 300;
+    margin: 10px 0;
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--color-ice-2);
+}
+
+/* Colors used in Stats */
+.text-accent-1 { color: var(--color-ice-1); text-shadow: 0 0 20px rgba(224, 247, 250, 0.2); }
+.text-accent-2 { color: var(--color-ice-2); text-shadow: 0 0 20px rgba(129, 212, 250, 0.2); }
+.text-accent-3 { color: var(--color-ice-3); text-shadow: 0 0 20px rgba(41, 182, 246, 0.2); }
+
+.unit { font-size: 2rem; opacity: 0.7; margin-left: 5px; font-weight: 300; }
+.unit-lg { font-size: 3rem; margin-left: 20px; opacity: 0.7; color: var(--color-silver); font-weight: 300;}
+
+.comparison-text {
+    font-size: 1rem;
+    max-width: 80%;
+    margin: 15px auto;
+    color: var(--color-silver);
+    line-height: 1.5;
+}
+
+.spacer { height: 30px; }
+
+/* --- Layouts --- */
+.content-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.stat-divider { width: 1px; background: linear-gradient(to bottom, transparent, var(--color-ice-2), transparent); height: 70px; }
+
+.chart-container-large {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.legend-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    background: rgba(255,255,255,0.05);
+    padding: 6px 12px;
+    border-radius: 4px; /* More angular for geometric look */
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.dot { width: 8px; height: 8px; margin-right: 8px; }
+
+/* --- Top Exercises List --- */
+.list-container {
+    width: 100%;
+    text-align: left;
+}
+
+.rank-row {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 1.1rem;
+}
+
+.rank-row:last-child { border-bottom: none; }
+
+.rank-num {
+    font-weight: 700;
+    color: var(--color-ice-3);
+    width: 30px;
+}
+
+.rank-name { font-weight: 300; letter-spacing: 0.5px; }
+
+/* --- Snowflake Animation (CSS only version as fallback/enhancement) --- */
+.snow-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: #fff;
+    user-select: none;
+    z-index: 1000;
+    cursor: default;
+    animation-name: snowfall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    opacity: 0.8;
+}
+
+@keyframes snowfall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(110vh); }
+}
+
+/* --- Misc --- */
+.crown-icon { font-size: 3rem; margin-top: 20px; filter: grayscale(100%) brightness(1.5); /* Silver crown */ opacity: 0.8; }
+.scroll-indicator { margin-top: 40px; font-size: 2rem; color: var(--color-ice-2); opacity: 0.5; }
+
+.glitch { position: relative; }
+
+/* Loading / Error */
+.loading, .error {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background: var(--color-bg-dark);
+    z-index: 20;
+    position: relative;
+    font-weight: 300;
+}
+/* --- Year Grid (Contribution) --- */
+.year-grid {
+    display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-auto-flow: column;
+    gap: 3px;
+    height: 140px;
+    width: 100%;
+    margin-top: 20px;
+    /* Optional: Horizontal scroll if it gets too wide on mobile */
+    overflow-x: auto; 
+}
+
+.day-cell {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.day-level-0 { background: rgba(255, 255, 255, 0.05); }
+.day-level-1 { background: var(--color-ice-1); opacity: 0.3; }
+.day-level-2 { background: var(--color-ice-2); opacity: 0.6; }
+.day-level-3 { background: var(--color-ice-3); opacity: 0.8; }
+.day-level-4 { background: #fff; box-shadow: 0 0 5px #fff; }
+
+/* --- Badges --- */
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.badge {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    animation: float 4s infinite ease-in-out;
+}
+
+.badge:nth-child(even) { animation-delay: 1s; }
+.badge:nth-child(3n) { animation-delay: 2s; }
+
+/* --- The Grinder --- */
+.grinder-date {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-ice-2);
+    margin-bottom: 10px;
+}
