@@ -14,10 +14,10 @@ You need to export your workout history as a CSV file.
 1. Open the **FitNotes** app on your phone.
 2. Tap the **Settings** (Gear icon) or Menu.
 3. Select **Spreadsheet Export**.
-4. Choose **Save to Device** (or Google Drive/Cloud to transfer it easier).
+4. Choose **Save to Device**.
 5. Ensure you export **All Data** (CSV format).
 
-![How to export data from FitNotes](assets/export_guide_placeholder.png)
+![How to export data from FitNotes](assets/FitNotes.jpg)
 
 ### 2. Prepare the Project
 
