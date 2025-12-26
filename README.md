@@ -48,7 +48,7 @@ Open your browser and navigate to:
 - **Advanced Insights**:
   - **No Days Off**: A GitHub-style contribution grid visualizing your daily consistency and intensity.
   - **The Grinder**: Automatic detection of your single hardest session of the year (by volume).
-  - **Identity Badges**: Interactive personas (e.g., "Weekend Warrior", "Volume Vulture") based on your training habits. Tap them to see why you earned them!
+  - **Identity Badges**: Interactive personas based on your training habits.
 - **Charts**:
   - **Weekly Rhythm**: Visualize your most popular training days.
   - **Muscle Split**: A breakdown of your body part focus.
