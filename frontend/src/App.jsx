@@ -111,9 +111,9 @@ function App() {
         <Snow /> {/* Snow only on this slide mostly visible */}
         <div className="glass-card">
             <motion.div variants={scaleIn} initial="hidden" whileInView="visible" viewport={{ once: false }}>
-                <p className="subtitle">WINTER WRAPPED</p>
+                <p className="subtitle">FITNOTES WRAPPED</p>
                 <h1 className="super-title">{data.year}</h1>
-                <p className="label-sm" style={{marginTop: '20px'}}>FitNotes Review</p>
+                <p className="label-sm" style={{marginTop: '20px'}}>Your Yearly Review</p>
                 <motion.div 
                     className="scroll-indicator"
                     animate={{ y: [0, 5, 0], opacity: [0.5, 1, 0.5] }}
