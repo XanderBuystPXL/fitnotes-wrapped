@@ -17,7 +17,7 @@ You need to export your workout history as a CSV file.
 4. Choose **Save to Device**.
 5. Ensure you export **All Data** (CSV format).
 
-![How to export data from FitNotes](assets/FitNotes.jpg)
+<img src="assets/FitNotes.jpg" width="300" alt="How to export data from FitNotes" />
 
 ### 2. Prepare the Project
 
