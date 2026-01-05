@@ -14,7 +14,7 @@ dist/
 .npm/
 
 # Data (Sensitive user data)
-data/*.csv
+data/
 !data/.gitkeep
 
 # IDE

@@ -34,7 +34,7 @@ def get_latest_csv():
         return None
 
 @app.get("/api/stats")
-def get_stats():
+def get_stats(year: int = None):
     csv_file = get_latest_csv()
     if not csv_file:
         return {"error": "No data found"}
@@ -43,17 +43,15 @@ def get_stats():
         df = pd.read_csv(csv_file)
         df['Date'] = pd.to_datetime(df['Date'])
         
-        # Determine year (Priority: Current Year > Most Frequent Year > Max Year)
-        current_year = datetime.now().year
-        year_counts = df['Date'].dt.year.value_counts()
+        # Determine year (Priority: Selected Year > Latest Year)
+        available_years = sorted(df['Date'].dt.year.unique().tolist(), reverse=True)
         
-        if current_year in year_counts.index:
-            target_year = current_year
-        elif not year_counts.empty:
-            target_year = year_counts.idxmax()
+        if year and year in available_years:
+            target_year = year
+        elif available_years:
+            target_year = available_years[0]
         else:
-            max_date = df['Date'].max()
-            target_year = max_date.year
+             return {"error": "No data found"}
         
         df_year = df[df['Date'].dt.year == target_year].copy()
         
@@ -224,7 +222,9 @@ def get_stats():
             "longest_streak": int(longest_streak),
             "year_grid": year_grid,
             "the_grinder": the_grinder,
-            "badges": badges
+            "the_grinder": the_grinder,
+            "badges": badges,
+            "available_years": available_years
         }
 
     except Exception as e:

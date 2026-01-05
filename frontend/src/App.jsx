@@ -78,16 +78,26 @@ function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [availableYears, setAvailableYears] = useState([]);
+  const [selectedYear, setSelectedYear] = useState(null);
 
   const [showConfetti, setShowConfetti] = useState(false);
   const [selectedBadge, setSelectedBadge] = useState(null);
   
   useEffect(() => {
-    fetch('/api/stats')
+    setLoading(true);
+    setShowConfetti(false);
+    const query = selectedYear ? `?year=${selectedYear}` : '';
+    fetch(`/api/stats${query}`)
       .then(res => res.json())
       .then(d => {
         if (d.error) throw new Error(d.error);
         setData(d);
+        if (d.available_years) {
+            setAvailableYears(d.available_years);
+            // If initially null, sync with what backend chose
+            if (!selectedYear) setSelectedYear(d.year);
+        }
         setLoading(false);
       })
       .catch(e => {
@@ -95,7 +105,7 @@ function App() {
         setError(e.message);
         setLoading(false);
       });
-  }, []);
+  }, [selectedYear]);
 
   if (loading) return <div className="loading">Defrosting Data...</div>;
   if (error) return <div className="error">Error: {error}</div>;
@@ -104,6 +114,32 @@ function App() {
   return (
     <div className="snap-container">
       <WinterBackground />
+      
+      {/* Year Selector */}
+      {availableYears.length > 1 && (
+        <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000 }}>
+            <select 
+                value={selectedYear || ''} 
+                onChange={(e) => setSelectedYear(Number(e.target.value))}
+                style={{
+                    background: 'rgba(2, 11, 28, 0.8)',
+                    color: '#e0f7fa',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontSize: '1rem',
+                    outline: 'none',
+                    backdropFilter: 'blur(5px)'
+                }}
+            >
+                {availableYears.map(y => (
+                    <option key={y} value={y}>{y}</option>
+                ))}
+            </select>
+        </div>
+      )}
+
       {showConfetti && <Confetti recycle={false} numberOfPieces={500} colors={['#e0f7fa', '#81d4fa', '#ffffff']} />}
 
       {/* Slide 1: Welcome (With Snow) */}
@@ -361,7 +397,7 @@ function App() {
                    }}
                    viewport={{ once: true, amount: 0.5 }}
                >
-                   <h1 className="super-title">2025</h1>
+                   <h1 className="super-title">{data.year}</h1>
                    <p className="subtitle">COMPLETE</p>
                    <p className="footer-text" style={{marginTop: '40px', opacity: 0.6}}>Remember, last set best set.</p>
                </motion.div>
